@@ -5,7 +5,7 @@
   <!-- source: https://github.com/tu-darmstadt-ros-pkg/hector_models/blob/indigo-devel/hector_xacro_tools/urdf/inertia_tensors.urdf.xacro -->
   <xacro:include filename="$(find udacity_bot)/urdf/inertia_tensors.urdf.xacro" />
 
-  <xacro:include filename="$(find udacity_bot)/urdf/udacity_bot.gazebo" />
+  <xacro:include filename="$(find udacity_bot)/urdf/custom_bot.gazebo" />
 
   <link name="robot_footprint"></link>
 
@@ -16,7 +16,7 @@
   </joint>
 
   <joint type="continuous" name="left_wheel_hinge">
-    <origin xyz="0 0.15 0" rpy="0 0 0"/>
+    <origin xyz="0 0.23 -0.26" rpy="0 0 0"/>
     <child link="left_wheel"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -25,7 +25,7 @@
   </joint>
 
   <joint type="continuous" name="right_wheel_hinge">
-    <origin xyz="0 -0.15 0" rpy="0 0 0"/>
+    <origin xyz="0 -0.23 -0.26" rpy="0 0 0"/>
     <child link="right_wheel"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -34,7 +34,7 @@
   </joint>
 
   <joint type="fixed" name="camera_joint">
-    <origin xyz="0.2 0 0" rpy="0 0 0"/>
+    <origin xyz="0.2 0 .2" rpy="0 0 0"/>
     <child link="camera"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -43,7 +43,7 @@
   </joint>
 
   <joint type="fixed" name="hokuyo_joint">
-    <origin xyz="0.15 0 0.08" rpy="0 0 0"/>
+    <origin xyz="0 0 0.335" rpy="0 0 0"/>
     <child link="hokuyo"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -52,7 +52,7 @@
   </joint>
 
   <joint type="fixed" name="front_caster_joint">
-    <origin xyz="0.15 0 -0.05" rpy="0 0 0"/>
+    <origin xyz="0.15 0 -0.31" rpy="0 0 0"/>
     <child link="front_caster"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -61,7 +61,7 @@
   </joint>
 
   <joint type="fixed" name="back_caster_joint">
-    <origin xyz="-0.15 0 -0.05" rpy="0 0 0"/>
+    <origin xyz="-0.15 0 -0.31" rpy="0 0 0"/>
     <child link="back_caster"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -169,21 +169,21 @@
   
   <link name='chassis'>
     <pose>0 0 0.1 0 0 0</pose>
-    <xacro:inertial_cuboid_with_pose mass="15.0" x_length=".4" y_length="0.2" z_length="0.1" >
+    <xacro:inertial_cylinder_with_pose mass="30.0" radius="0.2" z_length="0.6" >
       <origin xyz="0.0 0 0" rpy=" 0 0 0"/>
-    </xacro:inertial_cuboid_with_pose>
+    </xacro:inertial_cylinder_with_pose>
 
     <collision name='collision'>
       <origin xyz="0 0 0" rpy=" 0 0 0"/> 
       <geometry>
-        <box size=".4 .2 .1"/>
+        <cylinder length="0.6" radius="0.2"/>
       </geometry>
     </collision>
 
     <visual name='chassis_visual'>
       <origin xyz="0 0 0" rpy=" 0 0 0"/>
       <geometry>
-        <box size=".4 .2 .1"/>
+        <cylinder length="0.6" radius="0.2"/>
       </geometry>
     </visual>
   </link>
