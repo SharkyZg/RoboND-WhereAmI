@@ -48,6 +48,7 @@
   <gazebo reference="back_caster">
     <material>Gazebo/Grey</material>
   </gazebo>
+  
   <gazebo reference="camera">
     <material>Gazebo/Green</material>
     <sensor type="camera" name="camera1">
